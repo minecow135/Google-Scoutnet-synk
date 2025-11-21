@@ -229,9 +229,15 @@ function createAccount_(member, orgUnitPath) {
     "orgUnitPath": orgUnitPath,
     password: Math.random().toString(36) // Generera ett slumpat lösenord
   };
-  user = AdminDirectory.Users.insert(user);
+  try {
+    user = AdminDirectory.Users.insert(user);
   
-  console.info('Användare %s skapad.', user.primaryEmail);
+    console.info('Användare %s skapad.', user.primaryEmail);
+  } catch(e) {
+    console.error("Failed user creation");
+    console.error(e);
+    return;
+  }
 }
 
 
