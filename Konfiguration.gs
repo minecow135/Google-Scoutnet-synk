@@ -60,6 +60,9 @@ KONFIG_OBJECT.ORGANISATION_TYPE = "group"; //Ska enbart ändras om du kör progr
 //Adressen till Scoutnet. Ska ej ändras
 KONFIG_OBJECT.SCOUTNET_URL = "www.scoutnet.se"; //Scoutnets webbadress
 
+//Phone number country code
+KONFIG_OBJECT.PHONE_COUNTRY_CODE = "46";
+
 
 /**
  * scoutnetId = id för e-postlistan i Scoutnet

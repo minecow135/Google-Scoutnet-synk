@@ -1184,7 +1184,7 @@ function intPhoneNumber_(phnum) {
   }
 
   //Lägg till landskod om ingen finns innan
-  return "+46" + phnum;
+  return "+" + KONFIG.PHONE_COUNTRY_CODE + phnum;
 }
 
 
