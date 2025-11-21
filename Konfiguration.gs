@@ -14,9 +14,14 @@ function checkKonfigIsOk() {
 
 const KONFIG_OBJECT = {};
 
+//Scoutkårens namn
+KONFIG_OBJECT.GROUP_NAME = "Testmall Scoutkår";
+
 KONFIG_OBJECT.DOMAIN = "hasselbyscout.se"; //Domänen/Webbsideadressen utan till kåren utan www och som används i Google Workspace
 
 KONFIG_OBJECT.SCOUTNET_GROUP_ID = "12"; //Kår-ID för webbtjänster som kan hittas i Scoutnet om du har tillräcklig behörighet
+
+KONFIG_OBJECT.SUPPORT_EMAIL = "support@" + KONFIG_OBJECT.DOMAIN; //Email for users to contact your support administrators 
 
 
 //Get a detailed csv/xls/json list of all members
@@ -92,12 +97,44 @@ KONFIG_OBJECT.USER_ACCOUNT_CONFIG = [
   }
 ];
 
+//Send email to user with credentials
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_SEND_EMAIL = false;
+
+//Require user to change password at first login
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_PASSWORD_CHANGE = true;
+
+//Ämne på e-post som skickar användaruppgifter för kontaktsynkronisering
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_SUBJECT = "Du har fått en e-postkonto hos " + KONFIG_OBJECT.GROUP_NAME;
+
+//Avsändarnamn på e-post som skickar användaruppgifter för kontaktsynkronisering
+//Om inget sätts används namnet på användarkontot som kör skriptet
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_SENDER_NAME = "";
+
+//Avsändare-post på e-post som skickar användaruppgifter för kontaktsynkronisering
+//Avsändaradressen måste finnas upplagd som alias i din Gmail
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_SENDER_FROM = "";
+
+//Should the email be sent from a noreply address. (noreply@[DOMAIN])
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_SENDER_NOREPLY = true;
+
+//Email address users should reply to
+//If nothing is set, users reply to sender
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_REPLYTO_EMAIL = KONFIG_OBJECT.SUPPORT_EMAIL;
+
+//Skapa din egen med hjälp av funktionen testGetHtmlEmailBody
+//variables: {{userGivenName}}, {{newUserEmail}}, {{password}}
+/***Brödtext enkel***/
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_PLAINBODY = "Hei {{userGivenName}}, Du har fått en konto hos " + KONFIG_OBJECT.GROUP_NAME +". Venligst logg inn på https://accounts.google.com/ med følgende bruker for å aktivere kontoen. E-postadresse: {{newUserEmail}} Passord: {{password}} Ved problemer, ta kontakt med " + KONFIG_OBJECT.SUPPORT_EMAIL + ". Mvh " + KONFIG_OBJECT.GROUP_NAME;
+/***Brödtext enkel - Slut***/
+
+/***Brödtext Html***/
+KONFIG_OBJECT.NEW_USER_EMAIL_CREDENTIALS_HTMLBODY = '<div dir="ltr">Hei {{userGivenName}},<div><br></div><div>Du har fått en konto hos ' + KONFIG_OBJECT.GROUP_NAME +'.</div><div><br></div><div>Venligst logg inn på <a href="https://accounts.google.com/">https://accounts.google.com/</a> med følgende bruker for å aktivere kontoen.</div><div><br></div><div>E-postadresse: {{newUserEmail}}</div><div>Passord: {{password}}</div><div><br></div><div>Ved problemer, ta kontakt med <a href="mailto:' + KONFIG_OBJECT.SUPPORT_EMAIL + '">' + KONFIG_OBJECT.SUPPORT_EMAIL + '</a>.</div><div><br></div><div>Mvh</div><div>' + KONFIG_OBJECT.GROUP_NAME + '</div></div>';
+/***Brödtext Html - Slut***/
+
 
 /**
  * Inställningar för Kontaktgrupper
  */
-//Scoutkårens namn
-KONFIG_OBJECT.GROUP_NAME = "Testmall Scoutkår";
 
 //Max antal tvingade uppdatering per användare tills det nollställs
 KONFIG_OBJECT.MAX_NUMBER_OF_CONTACTS_FORCE_UPDATE = 10;
