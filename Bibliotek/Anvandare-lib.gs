@@ -229,9 +229,76 @@ function createAccount_(member, orgUnitPath) {
     "orgUnitPath": orgUnitPath,
     password: Math.random().toString(36) // Generera ett slumpat lösenord
   };
-  user = AdminDirectory.Users.insert(user);
+  userNew = AdminDirectory.Users.insert(user);
   
-  console.info('Användare %s skapad.', user.primaryEmail);
+  console.info('Användare %s skapad.', userNew.primaryEmail);
+
+  if (KONFIG.NEW_USER_EMAIL_CREDENTIALS_SEND_EMAIL) {
+    sendEmailNewUser_(member.email , user);
+  }
+}
+
+
+/**
+ * Send email to user when an account is created
+ * 
+ * @param {string} userEmail - Email to send message to
+ * @param {Object} user - User object
+*/
+function sendEmailNewUser_(userEmail, user) {
+
+  if (user.primaryEmail == "" || typeof user.primaryEmail == 'undefined') {
+    console.error("user info not found when sending email (email)");
+    return;
+  } else if (user.name.givenName == "" || typeof user.name.givenName == 'undefined') {
+    console.error("user info not found when sending email (name)");
+    return;
+  } else if (user.password == "" || typeof user.password == 'undefined') {
+    console.error("user info not found when sending email (password)");
+    return;
+  }
+
+  const emailOptions = {};
+
+  /***Avsändarnamn***/
+  if (KONFIG.NEW_USER_EMAIL_CREDENTIALS_SENDER_NAME) {
+    emailOptions["name"] = KONFIG.NEW_USER_EMAIL_CREDENTIALS_SENDER_NAME;
+  }
+  /***Avsändarnamn - Slut***/
+
+  /***Avsändaradress***/
+  if (KONFIG.NEW_USER_EMAIL_CREDENTIALS_SENDER_NOREPLY) {
+    emailOptions["noReply"] = true;
+  } else if (KONFIG.NEW_USER_EMAIL_CREDENTIALS_SENDER_FROM) {
+    if (getAllowedFromEmailAdresses_().includes(KONFIG.NEW_USER_EMAIL_CREDENTIALS_SENDER_FROM)) {
+      emailOptions["from"] = KONFIG.NEW_USER_EMAIL_CREDENTIALS_SENDER_FROM;
+    }
+    else {
+      console.error("Angiven avsändaradress är ej godkänd");
+      console.error("Avsändaradressen måste finnas upplagd som alias i din Gmail");
+    }
+  }
+  /***Avsändaradress - Slut***/
+
+  /***Reply to***/
+  if (KONFIG.NEW_USER_EMAIL_CREDENTIALS_REPLYTO_EMAIL && KONFIG.NEW_USER_EMAIL_CREDENTIALS_REPLYTO_EMAIL != "") {
+    emailOptions["replyTo"] = KONFIG.NEW_USER_EMAIL_CREDENTIALS_REPLYTO_EMAIL;
+  }
+  /***Reply to - Slut***/
+
+  let new_user_email_plainBody_credentials = KONFIG.NEW_USER_EMAIL_CREDENTIALS_PLAINBODY.replace("{{userGivenName}}", user.name.givenName);  
+  new_user_email_plainBody_credentials = new_user_email_plainBody_credentials.replace("{{newUserEmail}}", user.primaryEmail);
+  new_user_email_plainBody_credentials = new_user_email_plainBody_credentials.replace("{{password}}", user.password);
+
+  let new_user_email_htmlBody_credentials = KONFIG.NEW_USER_EMAIL_CREDENTIALS_HTMLBODY.replace("{{userGivenName}}", user.name.givenName);
+  new_user_email_htmlBody_credentials = new_user_email_htmlBody_credentials.replace("{{newUserEmail}}", user.primaryEmail);
+  new_user_email_htmlBody_credentials = new_user_email_htmlBody_credentials.replace("{{password}}", user.password);
+
+  emailOptions["htmlBody"] = new_user_email_htmlBody_credentials;
+
+  console.info("Skickar e-post till " + userEmail);
+
+  GmailApp.sendEmail(userEmail, KONFIG.NEW_USER_EMAIL_CREDENTIALS_SUBJECT, new_user_email_plainBody_credentials, emailOptions);
 }
 
 
