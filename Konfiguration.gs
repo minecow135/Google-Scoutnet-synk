@@ -116,6 +116,13 @@ KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_NAME = "";
 //Avsändaradressen måste finnas upplagd som alias i din Gmail
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_FROM = "";
 
+//Should the email be sent from a noreply address. (noreply@[DOMAIN])
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_NOREPLY = false;
+
+//Email address users should reply to
+//If nothing is set, users reply to sender
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_REPLYTO_EMAIL = "";
+
 //Skapa din egen med hjälp av funktionen testGetHtmlEmailBody
 //variables: {{userEmail}}, {{password}}
 /***Brödtext enkel***/
@@ -145,6 +152,13 @@ KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_NAME = "";
 //Avsändare-post som upplyser om inkomplett matchning mellan två medlemmar (ett barn och en vuxen)
 //Avsändaradressen måste finnas upplagd som alias i din Gmail
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_FROM = "";
+
+//Should the email be sent from a noreply address. (noreply@[DOMAIN])
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_NOREPLY = false;
+
+//Email address users should reply to
+//If nothing is set, users reply to sender
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_REPLYTO_EMAIL = "";
 
 //Skapa din egen med hjälp av funktionen testGetHtmlEmailBody
 //variables: {{memberFullname}}, {{relativeNumber}}, {{member_no}}
