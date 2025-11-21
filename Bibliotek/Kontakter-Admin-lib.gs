@@ -1516,7 +1516,9 @@ function sendEmailWithContactsGroupsPassword_(userEmail, password) {
   /***Avsändarnamn - Slut***/
 
   /***Avsändaradress***/
-  if (KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_FROM) {
+  if (KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_NOREPLY) {
+    emailOptions["noReply"] = true;
+  } else if (KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_FROM) {
     if (getAllowedFromEmailAdresses_().includes(KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_FROM)) {
       emailOptions["from"] = KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_FROM;
     }
@@ -1526,6 +1528,12 @@ function sendEmailWithContactsGroupsPassword_(userEmail, password) {
     }
   }
   /***Avsändaradress - Slut***/
+  
+  /***Reply to***/
+  if (KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_REPLYTO_EMAIL && KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_REPLYTO_EMAIL != "") {
+    emailOptions["replyTo"] = KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_REPLYTO_EMAIL;
+  }
+  /***Reply to - Slut***/
 
   let contact_groups_email_plainBody_credentials = KONFIG.CONTACT_GROUPS_EMAIL_CREDENTIALS_PLAINBODY.replace("{{userEmail}}", userEmail);
   contact_groups_email_plainBody_credentials = contact_groups_email_plainBody_credentials.replace("{{password}}", password);
@@ -1559,7 +1567,9 @@ function sendEmailPartialMemberMatch_(memberData, memberFullname, relativeNumber
   /***Avsändarnamn - Slut***/
 
   /***Avsändaradress***/
-  if (KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_FROM) {
+  if (KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_NOREPLY) {
+    emailOptions["noReply"] = true;
+  } else if (KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_FROM) {
     if (getAllowedFromEmailAdresses_().includes(KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_FROM)) {
       emailOptions["from"] = KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_FROM;
     }
@@ -1569,6 +1579,12 @@ function sendEmailPartialMemberMatch_(memberData, memberFullname, relativeNumber
     }
   }
   /***Avsändaradress - Slut***/
+
+  /***Reply to***/
+  if (KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_REPLYTO_EMAIL && KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_REPLYTO_EMAIL != "") {
+    emailOptions["replyTo"] = KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_REPLYTO_EMAIL;
+  }
+  /***Reply to - Slut***/
 
   let subject = KONFIG.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SUBJECT.replace("{{memberFullname}}", memberFullname);
 

@@ -65,6 +65,9 @@ KONFIG_OBJECT.ORGANISATION_TYPE = "group"; //Ska enbart ändras om du kör progr
 //Adressen till Scoutnet. Ska ej ändras
 KONFIG_OBJECT.SCOUTNET_URL = "www.scoutnet.se"; //Scoutnets webbadress
 
+//Phone number country code
+KONFIG_OBJECT.PHONE_COUNTRY_CODE = "46";
+
 
 /**
  * scoutnetId = id för e-postlistan i Scoutnet
@@ -150,7 +153,15 @@ KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_NAME = "";
 //Avsändaradressen måste finnas upplagd som alias i din Gmail
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_FROM = "";
 
+//Should the email be sent from a noreply address. (noreply@[DOMAIN])
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_NOREPLY = false;
+
+//Email address users should reply to
+//If nothing is set, users reply to sender
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_REPLYTO_EMAIL = "";
+
 //Skapa din egen med hjälp av funktionen testGetHtmlEmailBody
+//variables: {{userEmail}}, {{password}}
 /***Brödtext enkel***/
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_PLAINBODY = "Hej, Du har nyss försökt autentisera dig med en felaktig kombination av e-postadress och lösenord för att synkronisera kontaktgrupper. Vänligen använd följande uppgifter i stället: E-postadress: {{userEmail}} Lösenord: {{password}} Mvh " + KONFIG_OBJECT.GROUP_NAME;
 /***Brödtext enkel - Slut***/
@@ -179,7 +190,15 @@ KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_NAME = "";
 //Avsändaradressen måste finnas upplagd som alias i din Gmail
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_FROM = "";
 
+//Should the email be sent from a noreply address. (noreply@[DOMAIN])
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_NOREPLY = false;
+
+//Email address users should reply to
+//If nothing is set, users reply to sender
+KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_REPLYTO_EMAIL = "";
+
 //Skapa din egen med hjälp av funktionen testGetHtmlEmailBody
+//variables: {{memberFullname}}, {{relativeNumber}}, {{member_no}}
 /***Brödtext enkel***/
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_PLAINBODY = "Hej, En inkomplett matchning har hittats mellan två medlemmar (ett barn och en vuxen) i Scoutnet. Vänligen komplettera uppgifterna med e-post/telefonnummer för medlem {{memberFullname}} i fältet Anhörig {{relativeNumber}} hos denna medlem. Direktlänk för denna medlem är https://" + KONFIG_OBJECT.SCOUTNET_URL + "/organisation/user/{{member_no}} Mvh " + KONFIG_OBJECT.GROUP_NAME;
 /***Brödtext enkel - Slut***/
