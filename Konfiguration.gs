@@ -117,6 +117,7 @@ KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_NAME = "";
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_SENDER_FROM = "";
 
 //Skapa din egen med hjälp av funktionen testGetHtmlEmailBody
+//variables: {{userEmail}}, {{password}}
 /***Brödtext enkel***/
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_CREDENTIALS_PLAINBODY = "Hej, Du har nyss försökt autentisera dig med en felaktig kombination av e-postadress och lösenord för att synkronisera kontaktgrupper. Vänligen använd följande uppgifter i stället: E-postadress: {{userEmail}} Lösenord: {{password}} Mvh " + KONFIG_OBJECT.GROUP_NAME;
 /***Brödtext enkel - Slut***/
@@ -146,6 +147,7 @@ KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_NAME = "";
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_SENDER_FROM = "";
 
 //Skapa din egen med hjälp av funktionen testGetHtmlEmailBody
+//variables: {{memberFullname}}, {{relativeNumber}}, {{member_no}}
 /***Brödtext enkel***/
 KONFIG_OBJECT.CONTACT_GROUPS_EMAIL_PARTIAL_MEMBER_MATCH_PLAINBODY = "Hej, En inkomplett matchning har hittats mellan två medlemmar (ett barn och en vuxen) i Scoutnet. Vänligen komplettera uppgifterna med e-post/telefonnummer för medlem {{memberFullname}} i fältet Anhörig {{relativeNumber}} hos denna medlem. Direktlänk för denna medlem är https://" + KONFIG_OBJECT.SCOUTNET_URL + "/organisation/user/{{member_no}} Mvh " + KONFIG_OBJECT.GROUP_NAME;
 /***Brödtext enkel - Slut***/
